@@ -15,7 +15,7 @@
 	})();
 	</script>
   
-  <title>测试文章 | 蛀牙cccpang</title>
+  <title>Dialog中的EditText获取焦点并全选加弹出软件盘 | 蛀牙cccpang</title>
   <meta name="author" content="蛀牙">
   
   <meta name="description" content="记录">
@@ -23,7 +23,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="测试文章"/>
+  <meta property="og:title" content="Dialog中的EditText获取焦点并全选加弹出软件盘"/>
   <meta property="og:site_name" content="蛀牙cccpang"/>
 
   
@@ -42,12 +42,12 @@
   <header><div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/imgs/logo.png" alt="蛀牙cccpang" title="蛀牙cccpang"/></a>
+				<a href="/"><img src="/imgs/logoy.png" alt="蛀牙cccpang" title="蛀牙cccpang"/></a>
 			</div>
 			
 			<div id="textlogo">
 				<h1 class="site-name">蛀牙cccpang</h1>
-				<h2 class="blog-motto">即使这是一条很艰苦的路,我也会义无反顾的走下去~</h2>
+				<h2 class="blog-motto">壁立千仞，无欲则刚。</h2>
 			</div>
 			<nav class="animated">
 				<ul>
@@ -81,22 +81,30 @@
   <div class="post-content">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-	测试文章
+	Dialog中的EditText获取焦点并全选加弹出软件盘
   </h1>
   <p class="article-author">By
     
       <a href="http://cccpang.github.io" title="蛀牙">蛀牙</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-02-03T13:35:00.169Z" itemprop="datePublished">2016-02-03</time>
-    更新日期:<time datetime="2016-02-03T13:35:00.169Z" itemprop="dateModified">2016-02-03</time>
+    <time datetime="2016-02-04T07:41:14.525Z" itemprop="datePublished">2016-02-04</time>
+    更新日期:<time datetime="2016-02-04T07:41:14.525Z" itemprop="dateModified">2016-02-04</time>
     
   </p>
 </header>
     <div class="entry">
 		
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>!<br>大家好这是测试文章,用来测试是否成功发布</p>
-<h2 id="u8BA9_u6211_u4EEC_u5F00_u59CB_u6B63_u6587"><a href="#u8BA9_u6211_u4EEC_u5F00_u59CB_u6B63_u6587" class="headerlink" title="让我们开始正文"></a>让我们开始正文</h2><h3 id="u7B2C_u4E00_u6B65_u662F"><a href="#u7B2C_u4E00_u6B65_u662F" class="headerlink" title="第一步是"></a>第一步是</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">打字</span><br><span class="line">fdffdf</span><br></pre></td></tr></table></figure>
+        <p>首次搭建HEXO_GITHUB,尝试发布一篇文章<a href="http://hexo.io/" target="_blank" rel="external">本文链接</a>!<br><a id="more"></a></p>
+<h3 id="u6D41_u7A0B_3A"><a href="#u6D41_u7A0B_3A" class="headerlink" title="流程:"></a>流程:</h3><pre><code>- 需求
+- 代码
+- 效果图
+</code></pre><h3 id="u9700_u6C42_3A"><a href="#u9700_u6C42_3A" class="headerlink" title="需求:"></a>需求:</h3><pre><code>Dialog弹窗中有一个view里面有一个edittext, 
+需要在触发dialog的时候方便用户操作,需要马上使得edittext得到焦点 
+并且里面的内容全选,这个时候还要把软件盘弹出来…. 
+</code></pre><h3 id="u4EE3_u7801_u5757_3A"><a href="#u4EE3_u7801_u5757_3A" class="headerlink" title="代码块:"></a>代码块:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$(R.id.fab).setOnClickListener(new View.<span class="function"><span class="title">OnClickListener</span></span>() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(View v) &#123;</span><br><span class="line">		View view = View.inflate(getActivity(), R.layout.text_dialog, null);</span><br><span class="line">		ed = (EditText) view.findViewById(R.id.ed);</span><br><span class="line">		ed.setText(<span class="string">"123"</span>);</span><br><span class="line">		ed.setSelectAllOnFocus(<span class="literal">true</span>);</span><br><span class="line">		new AlertDialog.Builder(getActivity())</span><br><span class="line">			.setTitle(<span class="string">"请输入"</span>)</span><br><span class="line">			.setIcon(android.R.drawable.ic_dialog_info)</span><br><span class="line">			.setView(view)</span><br><span class="line">			.setPositiveButton(<span class="string">"确定"</span>, null)</span><br><span class="line">			.setNegativeButton(<span class="string">"取消"</span>, null)</span><br><span class="line">			.show();</span><br><span class="line">		new Handler().postDelayed(new <span class="function"><span class="title">Runnable</span></span>()&#123;</span><br><span class="line">		  public void <span class="function"><span class="title">run</span></span>() &#123;</span><br><span class="line">			ed.setFocusable(<span class="literal">true</span>);</span><br><span class="line">			ed.setFocusableInTouchMode(<span class="literal">true</span>);</span><br><span class="line">			//请求获得焦点</span><br><span class="line">			ed.requestFocus();</span><br><span class="line">			//调用系统输入法</span><br><span class="line">			InputMethodManager inputManager = (InputMethodManager) </span><br><span class="line">			ed.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);</span><br><span class="line">			inputManager.showSoftInput(ed, <span class="number">0</span>);</span><br><span class="line">		  &#125;</span><br><span class="line">		&#125;, <span class="number">200</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>做法就是给加个延时,因为这些动作需要在弹窗show出来后,才会执行出效果,效果如下:</p>
+
     </div>
     <footer>
         
